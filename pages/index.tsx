@@ -6,7 +6,7 @@ import ConnectionContextProvider from "../context/ConnectionContextProvider";
 const Home = () => {
   return (
     <ConnectionContextProvider>
-      <div className="flex flex-col sm:flex-row h-screen w-screen bg-gray-200">
+      <div className="flex flex-col md:flex-row h-screen w-screen bg-gray-200">
         <Graph />
         <Form />
       </div>

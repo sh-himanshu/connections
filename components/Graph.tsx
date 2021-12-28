@@ -8,28 +8,31 @@ import Line from "./Line";
 const Graph = () => {
   const value = useConnectContext();
 
-  const ref = useCallback((node) => {
-    if (node !== null) {
-      value?.setPos(
-        Array.from((node as HTMLDivElement).querySelectorAll("div")).reduce(
-          (final, current) => ({
-            ...final,
-            [current.dataset["name"] as string]: getCenter(
-              current.getBoundingClientRect()
-            ),
-          }),
-          {}
-        )
-      );
-    }
+  const ref = useCallback(
+    (node) => {
+      if (node !== null) {
+        value?.setPos(
+          Array.from((node as HTMLDivElement).querySelectorAll("div")).reduce(
+            (final, current) => ({
+              ...final,
+              [current.dataset["name"] as string]: getCenter(
+                current.getBoundingClientRect()
+              ),
+            }),
+            {}
+          )
+        );
+      }
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    [value?.data]
+  );
 
   return (
-    <div className="sm:flex-auto">
+    <div className="md:flex-auto p-3">
       <div
         ref={ref}
-        className=" grid grid-cols-2 sm:grid-cols-3 bg-pink-600 gap-y-5 justify-items-center items-center p-5"
+        className="rounded-2xl shadow-xl grid grid-cols-2 sm:grid-cols-3 bg-pink-500 gap-y-5 justify-items-center items-center p-5"
       >
         {value?.data.map(({ name }, index) => (
           <Shape key={index} text={name} />

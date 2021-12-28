@@ -4,6 +4,7 @@ interface LineProps {
 }
 
 const Line = ({ from, to }: LineProps) => {
+  if (!from || !to || (!to && !from)) return <></>;
   return (
     <svg
       height="210"
