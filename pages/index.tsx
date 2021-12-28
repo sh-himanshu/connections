@@ -1,7 +1,17 @@
 import React from "react";
+import Form from "../components/Form";
+import Graph from "../components/Graph";
+import ConnectionContextProvider from "../context/ConnectionContextProvider";
 
 const Home = () => {
-  return <div>Hello World</div>;
+  return (
+    <ConnectionContextProvider>
+      <div className="flex flex-col sm:flex-row h-screen w-screen bg-gray-200">
+        <Graph />
+        <Form />
+      </div>
+    </ConnectionContextProvider>
+  );
 };
 
 export default Home;
