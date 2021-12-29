@@ -1,5 +1,6 @@
 import React from "react";
 import { useConnectContext } from "../context/ConnectionContextProvider";
+import { removeItem } from "../lib/utils";
 
 interface ShapeProps {
   text: string;
@@ -10,13 +11,31 @@ const Shape = ({ text }: ShapeProps) => {
   return (
     <div
       data-name={text}
-      onClick={(e) => {
-        console.log((e.target as HTMLDivElement).getBoundingClientRect());
-        if (value) console.log(value.pos[text]);
+      onClick={() => {
+        value?.setSelected((arr) => {
+          let arrCopy = [...arr];
+          if (arrCopy.includes(text)) {
+            arrCopy = removeItem(arrCopy, text);
+          } else {
+            arrCopy.push(text);
+          }
+          return arrCopy.slice(-2);
+        });
+        console.log(value?.selected);
       }}
-      className="z-10 group bg-blue-300 rounded-2xl flex justify-center items-center max-w-min content py-2 px-4 hover:shadow-md hover:bg-blue-700 border border-gray-500 hover:border-transparent text-center"
+      className={`z-10 group  rounded-2xl text-center flex justify-center items-center max-w-min content py-2 px-4 hover:shadow-md ${
+        value?.selected.includes(text)
+          ? "bg-blue-700 border-transparent"
+          : "bg-blue-300 hover:bg-blue-700 border border-gray-500 hover:border-transparent"
+      }`}
     >
-      <p className="uppercase text-lg group-hover:text-gray-100 tracking-wide">
+      <p
+        className={`uppercase text-lg  tracking-wide ${
+          value?.selected.includes(text)
+            ? "text-gray-100"
+            : "group-hover:text-gray-100"
+        }`}
+      >
         {text}
       </p>
     </div>

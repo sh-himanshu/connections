@@ -9,6 +9,8 @@ interface connectContextValue {
   >;
   pos: any;
   setPos: React.Dispatch<any>;
+  selected: string[];
+  setSelected: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 interface ConnectionContextProviderProps {
@@ -24,13 +26,16 @@ const ConnectionContextProvider = ({
 }: ConnectionContextProviderProps) => {
   const [data, setData] = useState(getConnections());
   const [pos, setPos] = useState<any>(null);
+  const [selected, setSelected] = useState<string[]>([]);
 
   useEffect(() => {
     data && setConnections(data);
   }, [data]);
 
   return (
-    <connectContext.Provider value={{ data, setData, pos, setPos }}>
+    <connectContext.Provider
+      value={{ data, setData, pos, setPos, selected, setSelected }}
+    >
       {children}
     </connectContext.Provider>
   );

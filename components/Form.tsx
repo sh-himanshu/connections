@@ -34,9 +34,9 @@ const Form = () => {
   };
 
   return (
-    <div className="flex  md:items-start justify-center z-30 items-center  flex-1">
+    <div className="flex  md:items-start justify-center z-30 items-center  m-4">
       <form
-        className="flex flex-col  bg-blue-500 space-y-5 p-5 mr-4 mt-4 rounded-2xl shadow-md"
+        className="flex flex-col  bg-blue-500 space-y-5 p-5 rounded-2xl shadow-md"
         onSubmit={handleSubmit}
         autoComplete="off"
       >
