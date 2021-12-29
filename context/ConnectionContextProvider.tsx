@@ -1,13 +1,12 @@
-import { createContext, useContext, useState } from "react";
-
-interface Person {
-  name: string;
-  friends: string[];
-}
+import { createContext, useContext, useEffect, useState } from "react";
+import { getConnections, setConnections } from "../lib/graph";
+import { SerializedGraph, Attributes } from "graphology-types";
 
 interface connectContextValue {
-  data: Person[];
-  setData: React.Dispatch<React.SetStateAction<Person[]>>;
+  data: SerializedGraph<Attributes, Attributes, Attributes> | undefined;
+  setData: React.Dispatch<
+    React.SetStateAction<SerializedGraph<Attributes, Attributes, Attributes>>
+  >;
   pos: any;
   setPos: React.Dispatch<any>;
 }
@@ -16,29 +15,6 @@ interface ConnectionContextProviderProps {
   children: React.ReactNode;
 }
 
-const dataInitialState: Person[] = [
-  {
-    name: "Sameer",
-    friends: ["Aayushi", "Kamalnath Sharma"],
-  },
-  {
-    name: "Aayushi",
-    friends: ["Bhaskar"],
-  },
-  {
-    name: "Kamalnath Sharma",
-    friends: ["Santi Kumar Saha"],
-  },
-  {
-    name: "Santi Kumar Saha",
-    friends: ["Bhaskar"],
-  },
-  {
-    name: "Bhaskar",
-    friends: ["Santi Kumar Saha", "Aayushi"],
-  },
-];
-
 const connectContext = createContext<connectContextValue | undefined>(
   undefined
 );
@@ -46,8 +22,12 @@ const connectContext = createContext<connectContextValue | undefined>(
 const ConnectionContextProvider = ({
   children,
 }: ConnectionContextProviderProps) => {
-  const [data, setData] = useState(dataInitialState);
+  const [data, setData] = useState(getConnections());
   const [pos, setPos] = useState<any>(null);
+
+  useEffect(() => {
+    data && setConnections(data);
+  }, [data]);
 
   return (
     <connectContext.Provider value={{ data, setData, pos, setPos }}>

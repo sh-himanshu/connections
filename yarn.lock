@@ -1405,7 +1405,7 @@ etag@1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-events@3.3.0:
+events@3.3.0, events@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
@@ -1631,6 +1631,32 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   version "4.2.8"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.8.tgz#e412b8d33f5e006593cbd3cee6df9f2cebbe802a"
   integrity sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==
+
+graphology-simple-path@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/graphology-simple-path/-/graphology-simple-path-0.1.2.tgz#b8d84852c94a069a8e906faa5274d33df0a53419"
+  integrity sha512-jOut2ihx5XMN97eUtmy4ZMp22btx3oa8GnvzQXHiBZOMyaC/gCpupnKVh0IvtzKd0RmmC5lT0zPBAqvU2O7Ejg==
+  dependencies:
+    graphology-utils "^1.8.0"
+    mnemonist "^0.39.0"
+
+graphology-types@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/graphology-types/-/graphology-types-0.23.0.tgz#76a0564baf31891044a7b0cc6cd028810541bb7a"
+  integrity sha512-6Je1NWU3el7YmybAhRzrOEi79Blhx05EU3wGUCvP5ikaxRXEflrW/5unfw5q/wqfwjryM9tcwUv4M7TZ8yTBYQ==
+
+graphology-utils@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/graphology-utils/-/graphology-utils-1.8.0.tgz#41315c468656e2a3e028a76468bbc2fbe42b0145"
+  integrity sha512-Pa7SW30OMm8fVtyH49b3GJ/uxlMHGfXly50wIhlcc7ZoX9ahZa7sPBz+obo4WZClrRV6wh3tIu0GJoI42eao1A==
+
+graphology@^0.23.2:
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/graphology/-/graphology-0.23.2.tgz#b09a33a9408a7615c3c9cff98e7404cc70a21820"
+  integrity sha512-RHcLpAP4M+KPShLQEvgkT1Y4vxl+FFbmmy3D0mupO+VXIuYC8zdmMcHs40D9m3mmN067zGS+lUaHjDq06Td7PQ==
+  dependencies:
+    events "^3.3.0"
+    obliterator "^2.0.0"
 
 has-bigints@^1.0.1:
   version "1.0.1"
@@ -2211,6 +2237,13 @@ minimist@^1.1.1, minimist@^1.2.0:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
+mnemonist@^0.39.0:
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/mnemonist/-/mnemonist-0.39.0.tgz#4c83dd22e8d9d05dfb721ff66a905fec4c460041"
+  integrity sha512-7v08Ldk1lnlywnIShqfKYN7EW4WKLUnkoWApdmR47N1xA2xmEtWERfEvyRCepbuFCETG5OnfaGQpp/p4Bus6ZQ==
+  dependencies:
+    obliterator "^2.0.1"
+
 modern-normalize@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/modern-normalize/-/modern-normalize-1.1.0.tgz#da8e80140d9221426bd4f725c6e11283d34f90b7"
@@ -2419,6 +2452,11 @@ object.values@^1.1.5:
     call-bind "^1.0.2"
     define-properties "^1.1.3"
     es-abstract "^1.19.1"
+
+obliterator@^2.0.0, obliterator@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/obliterator/-/obliterator-2.0.1.tgz#fbdd873bf39fc4f365a53b1fc86617a22526987c"
+  integrity sha512-XnkiCrrBcIZQitJPAI36mrrpEUvatbte8hLcTcQwKA1v9NkCKasSi+UAguLsLDs/out7MoRzAlmz7VXvY6ph6w==
 
 once@^1.3.0:
   version "1.4.0"

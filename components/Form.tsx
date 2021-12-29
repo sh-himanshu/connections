@@ -1,22 +1,44 @@
 import { useState } from "react";
 import { useConnectContext } from "../context/ConnectionContextProvider";
+import DataGraph from "graphology";
 
 const Form = () => {
   const value = useConnectContext();
   const [friend, setFriend] = useState("");
   const [name, setName] = useState("");
+
+  const reset = () => {
+    setFriend("");
+    setName("");
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (value && value.data) {
+      const newGraph = new DataGraph();
+      newGraph.import(value.data);
+
+      if (newGraph.hasNode(name)) return alert(`"${name}" Already Exist !`);
+      newGraph.addNode(name);
+
+      if (friend) {
+        if (!newGraph.hasNode(friend)) newGraph.addNode(friend);
+        newGraph.addUndirectedEdge(name, friend);
+      }
+
+      value.setData(newGraph.export());
+    }
+
+    reset();
+  };
+
   return (
     <div className="flex  md:items-start justify-center z-30 items-center  flex-1">
       <form
         className="flex flex-col  bg-blue-500 space-y-5 p-5 mr-4 mt-4 rounded-2xl shadow-md"
-        onSubmit={async (e) => {
-          e.preventDefault();
-          if (value) {
-            if (value.data.find((el) => el.name === name))
-              return alert(`"${name}" Already Exist !`);
-            value.setData((prev) => [...prev, { name, friends: [friend] }]);
-          }
-        }}
+        onSubmit={handleSubmit}
+        autoComplete="off"
       >
         <div className="flex items-center justify-between">
           <label
@@ -54,8 +76,8 @@ const Form = () => {
 
           <datalist id="choose-friend">
             {value?.data &&
-              value.data.map((el, index) => (
-                <option value={el.name} key={index} />
+              value.data?.nodes.map(({ key }, index) => (
+                <option value={key} key={index} />
               ))}
           </datalist>
         </div>
